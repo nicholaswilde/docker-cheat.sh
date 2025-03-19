@@ -2,6 +2,8 @@
 version: '3'
 
 vars:
+  COMMIT:
+    sh: cat COMMIT
   API_URL: "https://api.github.com/repos/chubin/cheat.sh/commits"
 
 tasks:
