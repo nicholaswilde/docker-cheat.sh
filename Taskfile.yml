@@ -2,16 +2,16 @@
 version: '3'
 
 vars:
-  API_URL: "https://api.github.com/repos/chubin/cheat.sh/releases/latest"
+  API_URL: "https://api.github.com/repos/chubin/cheat.sh/commits"
 
 tasks:
   export:
-    desc: Export the latest app version to VERSION
+    desc: Export the latest app commit to COMMIT
     cmds:
-      - printf "%s" "{{ .VERSION }}" > VERSION
+      - printf "%s" "{{ .COMMIT }}" > COMMIT
     vars:
-      VERSION:
-        sh: curl -sX GET {{ .API_URL }} | jq --raw-output '.tag_name'
+      COMMIT:
+        sh: curl -sX GET {{ .API_URL }} | jq --raw-output '.[0].sha'
   prune:
     desc: prune
     cmds:
