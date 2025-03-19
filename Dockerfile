@@ -1,6 +1,7 @@
 FROM alpine:3.14 AS dl
 WORKDIR /tmp
-ARG FILENAME="139f8c2fb348a7028a9bac5474ca20ea00b13543.tar.gz"
+ARG COMMIT="139f8c2fb348a7028a9bac5474ca20ea00b13543"
+ARG FILENAME="${COMMIT}.tar.gz"
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 RUN \
