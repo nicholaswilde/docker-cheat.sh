@@ -7,6 +7,10 @@ vars:
   API_URL: "https://api.github.com/repos/chubin/cheat.sh/commits"
 
 tasks:
+  debug:
+    desc: desc
+    cmds:
+      - "docker system prune -af && BUILDKIT_PROGRESS=plain docker compose up --build"
   export:
     desc: Export the latest app commit to COMMIT
     cmds:

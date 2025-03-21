@@ -11,7 +11,8 @@ RUN \
   echo "**** download cheat.sh ****" && \
   mkdir /app && \
   wget "https://github.com/chubin/cheat.sh/archive/${FILENAME}" && \
-  tar -xvf "${FILENAME}" -C /app --strip-components 1
+  tar -xvf "${FILENAME}" -C /app --strip-components 1 && \
+  ls /app
 WORKDIR /app
 
 FROM alpine:3.14 AS builder
@@ -37,10 +38,14 @@ WORKDIR /app
 # COPY . /app
 
 COPY --from=dl /app /app
-COPY ./entrypoint.sh /app/entrypoint.sh
-COPY ./requirements-mod.txt /app/requirements-mod.txt
+COPY entrypoint.sh .
+
+RUN echo "ls /app" && ls -la /app
+
+COPY requirements-mod.txt /app/requirements-mod.txt
 
 RUN \
+  ls /app && ls /app/lib && \
   echo "**** update source files ****" && \
   sed -i 's/python-Levenshtein/python-Levenshtein==0.12.2/g' ./requirements.txt && \
   cat ./requirements-mod.txt >> ./requirements.txt
@@ -58,23 +63,23 @@ RUN \
   pip3 install --no-cache-dir git+https://github.com/aboSamoor/pycld2.git && \
   mkdir -p /root/.cheat.sh/log/
 
+
 RUN \
   echo "**** install server dependencies ****" && \
   apk add --update --no-cache \
     py3-jinja2 \
     py3-flask \
     bash \
-    gawk && \
-  echo "**** cleanup ****" && \
-  apk del build-deps g++ && \
-  rm -rf \
-    /app/Dockerfile \
-    /app/requirements-mod.txt &&\
-  rm -rf /var/cache/apk/* * && \
-  rm -rf /tmp/*
+    gawk
 
-VOLUME ["/app/etc/"]
+#   echo "**** cleanup ****" && \
+#   apk del build-deps g++ && \
+#   ls /app && \
+#   rm -rf /var/cache/apk/* * && \
+#   rm -rf /tmp/*
+
+# VOLUME ["/app/etc/"]
 VOLUME ["/root/.cheat.sh/"]
-
-ENTRYPOINT ["/app/entrypoint.sh"]
+RUN chmod 755 /app/entrypoint.sh
+ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 CMD [""]

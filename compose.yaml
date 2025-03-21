@@ -11,7 +11,7 @@ services:
     ports:
       - "8002:8002"
     volumes:
-      - .:/app:Z
+    #   - .:/app:Z
       - cheatsh_data:/root/.cheat.sh
       # - ./upstream:/root/.cheat.sh/upstream/
     restart: always
