@@ -31,6 +31,7 @@ RUN \
   echo "**** update source files ****" && \
     sed -i 's/python-Levenshtein/python-Levenshtein==0.12.2/g' ./requirements.txt && \
     cat ./requirements-mod.txt >> ./requirements.txt && \
+    chmod 755 /app/entrypoint.sh && \
   echo "**** install packages ****" && \
   apk add --update --no-cache \
     git=2.32.7-r0 \
@@ -63,11 +64,11 @@ RUN \
   mkdir -p /root/.cheat.sh/log/ && \
   echo "**** cleanup ****" && \
     apk del build-deps g++ && \
-  rm -rf /var/cache/apk/* && \
-  rm -rf /tmp/*
+    rm -rf /var/cache/apk/* && \
+    rm -rf /tmp/*
 
 # VOLUME ["/app/etc/"]
 VOLUME ["/root/.cheat.sh/"]
-RUN chmod 755 /app/entrypoint.sh
+EXPOSE 8002
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
 CMD [""]

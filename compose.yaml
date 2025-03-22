@@ -3,17 +3,16 @@ services:
   app:
     build: .
     image: cheat.sh
-    container_name: chtsh
+    container_name: cheatsh
     depends_on:
       - redis
     environment:
       - CHEATSH_CACHE_REDIS_HOST=redis
+      # - CHEATSH_CACHE_TYPE=none
     ports:
       - "8002:8002"
     volumes:
-    #   - .:/app:Z
       - cheatsh_data:/root/.cheat.sh
-      # - ./upstream:/root/.cheat.sh/upstream/
     restart: always
   redis:
     image: redis:4-alpine

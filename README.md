@@ -17,11 +17,19 @@ need to be updated every time.
 
 ---
 
+## :classical_building: Architectures
+
+* [x] `armv7`
+* [x] `arm64`
+* [x] `amd64`
+
+---
+
 ## :pencil: Usage
 
 ```shell
 docker run -d
-  --name=cheat.sh \
+  --name=cheatsh \
   -e CHEATSH_CACHE_TYPE=none `# optional` \
   -e CHEATSH_CACHE_REDIS_HOST=redis `# optional` \
   -p 8002:8002 \
@@ -43,6 +51,7 @@ services:
       - redis
     environment:
       - CHEATSH_CACHE_REDIS_HOST=redis
+      # - CHEATSH_CACHE_TYPE=none
     ports:
       - "8002:8002"
     volumes:
@@ -66,6 +75,11 @@ Update all adapters while the container is running.
 docker exec -it cheatsh sh -c 'python3 /app/lib/fetch.py update-all'
 ```
 
+Get a list of `tar` commands.
+
+```shell
+curl localhost:8002/tar
+```
 ---
 
 ## :construction: Development
