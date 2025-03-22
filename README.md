@@ -3,7 +3,7 @@
 [![task](https://img.shields.io/badge/Task-Enabled-brightgreen?style=for-the-badge&logo=task&logoColor=white)](https://taskfile.dev/#/)
 [![ci](https://img.shields.io/github/actions/workflow/status/nicholaswilde/docker-cheat.sh/ci.yaml?label=ci&style=for-the-badge&branch=main)](https://github.com/nicholaswilde/docker-cheat.sh/actions/workflows/ci.yaml)
 
-A repository for creating a Docker image for [cheat.sh][1]
+:whale2: A repository for creating a Docker image for [cheat.sh][1] :computer:
 
 ---
 
