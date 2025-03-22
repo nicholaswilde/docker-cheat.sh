@@ -28,7 +28,7 @@ need to be updated every time.
 ## :pencil: Usage
 
 ```shell
-docker run -d
+docker run -d \
   --name=cheatsh \
   -e CHEATSH_CACHE_TYPE=none `# optional` \
   -e CHEATSH_CACHE_REDIS_HOST=redis `# optional` \
