@@ -27,11 +27,20 @@ need to be updated every time.
 
 ## :pencil: Usage
 
+Create volume
+
+```shell
+docker volume create cheatsh_data
+```
+
+Run the container.
+
 ```shell
 docker run -d \
   --name=cheatsh \
   -e CHEATSH_CACHE_TYPE=none `# optional` \
   -e CHEATSH_CACHE_REDIS_HOST=redis `# optional` \
+  -v cheatsh_data:/root/.cheat.sh \
   -p 8002:8002 \
   --restart unless-stopped \
   nicholaswilde/cheat.sh
