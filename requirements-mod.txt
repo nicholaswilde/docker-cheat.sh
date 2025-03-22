@@ -1,4 +1,4 @@
-protobuf=6.30.1
+protobuf
 werkzeug==0.16.1
-flask-wtf=1.2.2
+flask-wtf
 git+https://github.com/aboSamoor/pycld2.git@c71aa20a5cb04c93ac434abafea53bd570c9c1dc
