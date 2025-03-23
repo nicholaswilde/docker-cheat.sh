@@ -67,7 +67,7 @@ RUN \
     rm -rf /var/cache/apk/* && \
     rm -rf /tmp/*
 
-# VOLUME ["/app/etc/"]
+VOLUME ["/app/etc/"]
 VOLUME ["/root/.cheat.sh/"]
 EXPOSE 8002
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]

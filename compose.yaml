@@ -13,6 +13,7 @@ services:
       - "8002:8002"
     volumes:
       - cheatsh_data:/root/.cheat.sh
+      - ./etc:/app/etc
     restart: always
   redis:
     image: redis:4-alpine

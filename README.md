@@ -41,6 +41,7 @@ docker run -d \
   -e CHEATSH_CACHE_TYPE=none `# optional` \
   -e CHEATSH_CACHE_REDIS_HOST=redis `# optional` \
   -v cheatsh_data:/root/.cheat.sh \
+  -v ./etc:/app/etc \
   -p 8002:8002 \
   --restart unless-stopped \
   nicholaswilde/cheat.sh
@@ -65,6 +66,7 @@ services:
       - "8002:8002"
     volumes:
       - cheatsh_data:/root/.cheat.sh
+      - ./etc:/app/etc
     restart: always
   redis:
     image: redis:4-alpine
