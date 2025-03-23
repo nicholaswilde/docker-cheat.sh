@@ -12,7 +12,7 @@
 At the time of the creation of this repository, a Docker image did not exists for `cheat.sh` and so this repo pulls the
 `cheat.sh` repo at a certain commit and builds a multi-platform Docker image.
 
-The adapters are fetched on every run of the container, but because they're saved in a persistent volume, they don't
+The cheat sheets are fetched on every run of the container, but because they're saved in a persistent volume, they don't
 need to be updated every time.
 
 ---
@@ -27,7 +27,7 @@ need to be updated every time.
 
 ## :pencil: Usage
 
-Create volume
+Create Docker volume to store cheat sheets.
 
 ```shell
 docker volume create cheatsh_data
@@ -93,17 +93,29 @@ curl localhost:8002/tar
 
 ## :construction: Development
 
+Get the most recent commit hash from `cheat.sh`.
+
+```shell
+task export
+```
+
+Build the Docker image.
+
+
 ```shell
 docker --build-args COMMIT=1234 build .
 ```
 
 Where `COMMIT` is the latest commit from [`cheat.sh`][3].
 
+Additional packages are added to [`requirements-mod.txt`](requirements-mod.txt) and are appended to `cheat.sh`'s
+`requirements.txt` on build.
+
 ---
 
 ## :balance_scale: License
 
-​[​Apache License 2.0](../LICENSE)
+​[Apache License 2.0](./LICENSE)
 
 ---
 
